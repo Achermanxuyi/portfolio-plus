@@ -104,5 +104,29 @@
 		"offsetX": null,
 		"offsetY": null,
 		"enabled": false
+	},
+	"aboutMeCard": {
+		"width": 320,
+		"height": 160,
+		"order": 2,
+		"offsetX": null,
+		"offsetY": null,
+		"enabled": true
+	},
+	"focusAreasCard": {
+		"width": 300,
+		"height": 180,
+		"order": 3,
+		"offsetX": null,
+		"offsetY": null,
+		"enabled": true
+	},
+	"techStackCard": {
+		"width": 280,
+		"height": 220,
+		"order": 4,
+		"offsetX": null,
+		"offsetY": null,
+		"enabled": true
 	}
 }

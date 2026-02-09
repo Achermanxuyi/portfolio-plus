@@ -42,7 +42,7 @@
 		"enabled": false
 	},
 	"socialButtons": {
-		"width": 315,
+		"width": 320,
 		"height": 48,
 		"order": 3,
 		"offsetX": null,

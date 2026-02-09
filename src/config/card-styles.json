@@ -4,7 +4,7 @@
 		"height": 200,
 		"order": 1,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": 420,
 		"enabled": true
 	},
 	"hiCard": {
@@ -12,7 +12,7 @@
 		"height": 288,
 		"order": 3,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": -600,
 		"enabled": true
 	},
 	"clockCard": {
@@ -44,23 +44,23 @@
 	"socialButtons": {
 		"width": 315,
 		"height": 48,
-		"order": 6,
+		"order": 3,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": 350,
 		"enabled": true
 	},
 	"shareCard": {
-		"width": 200,
+		"width": 266,
 		"height": 180,
-		"order": 7,
+		"order": 6,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": 420,
 		"enabled": true
 	},
 	"articleCard": {
 		"width": 266,
 		"height": 160,
-		"order": 8,
+		"order": 2,
 		"offsetX": null,
 		"offsetY": null,
 		"enabled": true
@@ -106,27 +106,27 @@
 		"enabled": false
 	},
 	"aboutMeCard": {
-		"width": 320,
-		"height": 160,
+		"width": 400,
+		"height": 200,
 		"order": 2,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": -300,
 		"enabled": true
 	},
 	"focusAreasCard": {
-		"width": 300,
-		"height": 180,
+		"width": 400,
+		"height": 220,
 		"order": 3,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": -90,
 		"enabled": true
 	},
 	"techStackCard": {
-		"width": 280,
-		"height": 220,
+		"width": 380,
+		"height": 180,
 		"order": 4,
 		"offsetX": null,
-		"offsetY": null,
+		"offsetY": 140,
 		"enabled": true
 	}
 }

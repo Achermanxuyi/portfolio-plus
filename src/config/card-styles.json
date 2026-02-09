@@ -2,34 +2,34 @@
 	"artCard": {
 		"width": 360,
 		"height": 200,
-		"order": 3,
-		"offsetX": -193,
-		"offsetY": 419,
+		"order": 1,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"hiCard": {
-		"width": 414,
-		"height": 275,
-		"order": 1,
-		"offsetX": -212,
-		"offsetY": -576,
+		"width": 360,
+		"height": 288,
+		"order": 3,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"clockCard": {
-		"width": 194,
-		"height": 110,
+		"width": 232,
+		"height": 132,
 		"offset": 92,
 		"order": 4,
-		"offsetX": 388,
-		"offsetY": -183,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"calendarCard": {
-		"width": 370,
-		"height": 220,
+		"width": 350,
+		"height": 286,
 		"order": 5,
-		"offsetX": 308,
-		"offsetY": -65,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"musicCard": {
@@ -45,40 +45,40 @@
 		"width": 315,
 		"height": 48,
 		"order": 6,
-		"offsetX": -121,
-		"offsetY": 346,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"shareCard": {
 		"width": 200,
 		"height": 180,
 		"order": 7,
-		"offsetX": 370,
-		"offsetY": 243,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"articleCard": {
 		"width": 266,
 		"height": 160,
 		"order": 8,
-		"offsetX": -540,
-		"offsetY": 168,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"writeButtons": {
 		"height": 42,
 		"width": 180,
 		"order": 8,
-		"offsetX": 397,
-		"offsetY": -239,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"navCard": {
 		"width": 280,
 		"height": 434,
 		"order": 2,
-		"offsetX": -538,
-		"offsetY": -298,
+		"offsetX": null,
+		"offsetY": null,
 		"enabled": true
 	},
 	"likePosition": {
@@ -127,30 +127,6 @@
 		"order": 4,
 		"offsetX": null,
 		"offsetY": null,
-		"enabled": true
-	},
-	"aboutMeCard": {
-		"width": 449,
-		"height": 194,
-		"order": 2,
-		"offsetX": -223,
-		"offsetY": -288,
-		"enabled": true
-	},
-	"focusAreasCard": {
-		"width": 459,
-		"height": 196,
-		"order": 3,
-		"offsetX": -224,
-		"offsetY": -81,
-		"enabled": true
-	},
-	"techStackCard": {
-		"width": 460,
-		"height": 213,
-		"order": 4,
-		"offsetX": -222,
-		"offsetY": 122,
 		"enabled": true
 	}
 }

@@ -2,12 +2,14 @@
 
 import { useEffect } from 'react'
 import { create } from 'zustand'
+import { CARD_SPACING } from '@/consts'
 
 type CenterState = {
 	x: number
 	y: number
 	centerX: number
 	centerY: number
+	topY: number
 	width: number
 	height: number
 	setCenter: (x: number, y: number) => void
@@ -16,7 +18,7 @@ type CenterState = {
 
 const computeCenter = () => {
 	if (typeof window === 'undefined') {
-		return { x: 0, y: 0, width: 0, height: 0 }
+		return { x: 0, y: 0, centerX: 0, centerY: 0, width: 0, height: 0 }
 	}
 	const width = window.innerWidth
 	const height = window.innerHeight
@@ -25,6 +27,7 @@ const computeCenter = () => {
 		y: Math.floor(height / 2) - 24,
 		centerX: Math.floor(width / 2),
 		centerY: Math.floor(height / 2),
+		topY: CARD_SPACING,
 		width,
 		height
 	}
@@ -35,12 +38,13 @@ export const useCenterStore = create<CenterState>(set => ({
 	y: 0,
 	centerX: 0,
 	centerY: 0,
+	topY: 0,
 	width: 0,
 	height: 0,
 	setCenter: (x, y) => set({ x, y }),
 	recalc: () => {
 		const c = computeCenter()
-		set({ x: c.x, y: c.y, width: c.width, height: c.height, centerX: c.centerX, centerY: c.centerY })
+		set({ x: c.x, y: c.y, width: c.width, height: c.height, centerX: c.centerX, centerY: c.centerY, topY: c.topY })
 	}
 }))
 

@@ -5,6 +5,7 @@ import Card from '@/components/card'
 import { useConfigStore } from './stores/config-store'
 import { HomeDraggableLayer } from './home-draggable-layer'
 import { useState } from 'react'
+import { CARD_SPACING } from '@/consts'
 
 const techCategories = [
 	{
@@ -33,10 +34,14 @@ export default function TechStackCard() {
 	const center = useCenterStore()
 	const { cardStyles } = useConfigStore()
 	const styles = cardStyles.techStackCard
+	const hiCardStyles = cardStyles.hiCard
+	const aboutMeCardStyles = cardStyles.aboutMeCard
+	const focusAreasCardStyles = cardStyles.focusAreasCard
+
 	const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - styles.height / 2
+	const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + aboutMeCardStyles.height + focusAreasCardStyles.height + CARD_SPACING * 1.5
 
 	return (
 		<HomeDraggableLayer cardKey='techStackCard' x={x} y={y} width={styles.width} height={styles.height}>
@@ -47,7 +52,7 @@ export default function TechStackCard() {
 						{techCategories.map((category, index) => (
 							<div
 								key={index}
-								className='cursor-pointer rounded-lg bg-gradient-to-r from-gray-50 to-transparent p-3 transition-all hover:from-gray-100 hover:shadow-md'
+								className='cursor-pointer rounded-lg bg-linear-to-r from-gray-50 to-transparent p-3 transition-all hover:from-gray-100 hover:shadow-md'
 								onMouseEnter={() => setExpandedIndex(index)}
 								onMouseLeave={() => setExpandedIndex(null)}
 							>

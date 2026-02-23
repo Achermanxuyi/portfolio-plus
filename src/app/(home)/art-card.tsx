@@ -11,9 +11,13 @@ export default function ArtCard() {
 	const router = useRouter()
 	const styles = cardStyles.artCard
 	const hiCardStyles = cardStyles.hiCard
+	const aboutMeCardStyles = cardStyles.aboutMeCard
+	const focusAreasCardStyles = cardStyles.focusAreasCard
+	const techStackCardStyles = cardStyles.techStackCard
+	const socialButtonsCardStyles = cardStyles.socialButtons
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - hiCardStyles.height / 2 - styles.height - CARD_SPACING
+	const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + aboutMeCardStyles.height + focusAreasCardStyles.height + techStackCardStyles.height + socialButtonsCardStyles.height + CARD_SPACING * 2.5
 
 	const artImages = siteContent.artImages ?? []
 	const currentId = siteContent.currentArtImageId

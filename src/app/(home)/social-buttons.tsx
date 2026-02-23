@@ -60,6 +60,10 @@ export default function SocialButtons() {
 	const { maxSM, init } = useSize()
 	const styles = cardStyles.socialButtons
 	const hiCardStyles = cardStyles.hiCard
+	const aboutMeCardStyles = cardStyles.aboutMeCard
+	const focusAreasCardStyles = cardStyles.focusAreasCard
+	const techStackCardStyles = cardStyles.techStackCard
+
 	const order = maxSM && init ? 0 : styles.order
 	const delay = maxSM && init ? 0 : 100
 
@@ -111,7 +115,7 @@ export default function SocialButtons() {
 	}, [openDropdowns])
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
+	const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + aboutMeCardStyles.height + focusAreasCardStyles.height + techStackCardStyles.height + CARD_SPACING * 2
 
 	if (!showStates.container) return null
 

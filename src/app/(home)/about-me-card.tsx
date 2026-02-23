@@ -2,14 +2,16 @@ import { useCenterStore } from '@/hooks/use-center'
 import Card from '@/components/card'
 import { useConfigStore } from './stores/config-store'
 import { HomeDraggableLayer } from './home-draggable-layer'
+import { CARD_SPACING } from '@/consts'
 
 export default function AboutMeCard() {
 	const center = useCenterStore()
 	const { cardStyles } = useConfigStore()
 	const styles = cardStyles.aboutMeCard
+	const hiCardStyles = cardStyles.hiCard
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - styles.height / 2
+	const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + CARD_SPACING / 2
 
 	return (
 		<HomeDraggableLayer cardKey='aboutMeCard' x={x} y={y} width={styles.width} height={styles.height}>

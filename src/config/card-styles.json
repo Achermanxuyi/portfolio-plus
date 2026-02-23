@@ -4,7 +4,7 @@
 		"height": 200,
 		"order": 1,
 		"offsetX": null,
-		"offsetY": 420,
+		"offsetY": null,
 		"enabled": true
 	},
 	"hiCard": {
@@ -12,7 +12,7 @@
 		"height": 288,
 		"order": 3,
 		"offsetX": null,
-		"offsetY": -600,
+		"offsetY": null,
 		"enabled": true
 	},
 	"clockCard": {
@@ -46,7 +46,7 @@
 		"height": 48,
 		"order": 3,
 		"offsetX": null,
-		"offsetY": 350,
+		"offsetY": null,
 		"enabled": true
 	},
 	"shareCard": {
@@ -110,7 +110,7 @@
 		"height": 200,
 		"order": 2,
 		"offsetX": null,
-		"offsetY": -300,
+		"offsetY": null,
 		"enabled": true
 	},
 	"focusAreasCard": {
@@ -118,7 +118,7 @@
 		"height": 220,
 		"order": 3,
 		"offsetX": null,
-		"offsetY": -90,
+		"offsetY": null,
 		"enabled": true
 	},
 	"techStackCard": {
@@ -126,7 +126,7 @@
 		"height": 180,
 		"order": 4,
 		"offsetX": null,
-		"offsetY": 140,
+		"offsetY": null,
 		"enabled": true
 	}
 }

@@ -2,6 +2,7 @@ import { useCenterStore } from '@/hooks/use-center'
 import Card from '@/components/card'
 import { useConfigStore } from './stores/config-store'
 import { HomeDraggableLayer } from './home-draggable-layer'
+import { CARD_SPACING } from '@/consts'
 
 const focusAreas = [
 	{ emoji: '🧠', title: 'AI & Intelligent Systems' },
@@ -14,9 +15,11 @@ export default function FocusAreasCard() {
 	const center = useCenterStore()
 	const { cardStyles } = useConfigStore()
 	const styles = cardStyles.focusAreasCard
+	const hiCardStyles = cardStyles.hiCard
+	const aboutMeCardStyles = cardStyles.aboutMeCard
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - styles.height / 2
+	const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + aboutMeCardStyles.height + CARD_SPACING 
 
 	return (
 		<HomeDraggableLayer cardKey='focusAreasCard' x={x} y={y} width={styles.width} height={styles.height}>

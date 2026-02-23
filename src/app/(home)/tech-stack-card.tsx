@@ -8,26 +8,22 @@ import { useState } from 'react'
 import { CARD_SPACING } from '@/consts'
 
 const techCategories = [
-	{
-		name: 'Frontend',
-		skills: 'React · Next.js · TypeScript · Tailwind'
-	},
-	{
-		name: 'AI & Data',
-		skills: 'LLMs · Data Mining · Web Scraping · CV'
-	},
-	{
-		name: 'Backend',
-		skills: 'Python · Java · Node.js · Spring Boot'
-	},
-	{
-		name: 'Mobile',
-		skills: 'SwiftUI · Android · Flutter · React Native'
-	},
-	{
-		name: 'Database',
-		skills: 'MySQL · MongoDB · Firebase'
-	}
+    {
+        name: 'Core Languages',
+        skills: 'Python · TypeScript · Java · C++'
+    },
+    {
+        name: 'Architecture',
+        skills: 'Next.js · Node.js · Spring Boot · FastAPI'
+    },
+    {
+        name: 'Interface',
+        skills: 'React · Tailwind · SwiftUI · Flutter'
+    },
+    {
+        name: 'Data Infrastructure',
+        skills: 'PostgreSQL · MongoDB · Redis · Pinecone'
+    }
 ]
 
 export default function TechStackCard() {

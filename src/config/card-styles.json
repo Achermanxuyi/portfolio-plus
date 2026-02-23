@@ -114,7 +114,7 @@
 		"enabled": true
 	},
 	"focusAreasCard": {
-		"width": 400,
+		"width": 380,
 		"height": 220,
 		"order": 3,
 		"offsetX": null,

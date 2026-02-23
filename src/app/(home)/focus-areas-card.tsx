@@ -5,37 +5,48 @@ import { HomeDraggableLayer } from './home-draggable-layer'
 import { CARD_SPACING } from '@/consts'
 
 const focusAreas = [
-	{ emoji: '🧠', title: 'AI & Intelligent Systems' },
-	{ emoji: '👁️', title: 'Computer Vision' },
-	{ emoji: '💬', title: 'NLP & LLMs' },
-	{ emoji: '🌐', title: 'Full-Stack Development' }
+    "Neural Language Architectures",
+    "Cognitive Vision Systems",
+    "Linguistic Intelligence",
+    "Scalable Ecosystems"
 ]
 
 export default function FocusAreasCard() {
-	const center = useCenterStore()
-	const { cardStyles } = useConfigStore()
-	const styles = cardStyles.focusAreasCard
-	const hiCardStyles = cardStyles.hiCard
-	const aboutMeCardStyles = cardStyles.aboutMeCard
+    const center = useCenterStore()
+    const { cardStyles } = useConfigStore()
+    const styles = cardStyles.focusAreasCard
+    const hiCardStyles = cardStyles.hiCard
+    const aboutMeCardStyles = cardStyles.aboutMeCard
 
-	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
-	const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + aboutMeCardStyles.height + CARD_SPACING 
+    const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x - styles.width / 2
+    const y = styles.offsetY !== null ? center.topY + styles.offsetY : center.topY + hiCardStyles.height + aboutMeCardStyles.height + CARD_SPACING 
 
-	return (
-		<HomeDraggableLayer cardKey='focusAreasCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='p-6 max-sm:static max-sm:translate-0'>
-				<div className='flex flex-col justify-center h-full'>
-					<h2 className='text-lg font-bold mb-4'>Focus Areas</h2>
-					<div className='space-y-3'>
-						{focusAreas.map((area, index) => (
-							<div key={index} className='flex items-center gap-3'>
-								<span className='text-xl'>{area.emoji}</span>
-								<span className='text-sm font-medium text-gray-700'>{area.title}</span>
-							</div>
-						))}
-					</div>
-				</div>
-			</Card>
-		</HomeDraggableLayer>
-	)
+    return (
+        <HomeDraggableLayer cardKey='focusAreasCard' x={x} y={y} width={styles.width} height={styles.height}>
+            <Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='p-6 max-sm:static'>
+                <div className='flex flex-col items-center justify-center h-full'>
+                    {/* Bigger, more confident header with tighter bottom margin */}
+                    <h2 className='text-lg font-bold text-gray-900 tracking-tight mb-3'>
+                        Primary Domains
+                    </h2>
+
+                    <div className='flex flex-col items-center w-full'>
+                        {focusAreas.map((area, index) => (
+                            <div key={index} className='w-full flex flex-col items-center'>
+                                {/* Tightened padding for a denser, premium feel */}
+                                <span className='text-sm font-medium text-gray-600 py-1.5'>
+                                    {area}
+                                </span>
+                                
+                                {/* Subtle, very thin divider to manage the width gap */}
+                                {index !== focusAreas.length - 1 && (
+                                    <div className='w-12 h-[1px] bg-gray-100 mt-1 mb-1' />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </Card>
+        </HomeDraggableLayer>
+    )
 }

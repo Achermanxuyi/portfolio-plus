@@ -1,13 +1,13 @@
 {
-  "title": "波浪小球",
+  "title": "Wave Ball",
   "tags": [
     "Threejs",
     "Shader",
-    "学习"
+    "Learning"
   ],
   "date": "2026-01-14T18:03",
-  "summary": "折腾 Shader",
+  "summary": "Experimenting with Shaders",
   "cover": "/blogs/wave-ball/86d118420c399cdb.webp",
   "hidden": false,
-  "category": "代码实现"
+  "category": "Implementation"
 }

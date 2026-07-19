@@ -1,11 +1,11 @@
 {
-  "title": "GPU 闪动",
+  "title": "GPU Flickering",
   "tags": [
     "GPU",
-    "学习"
+    "Learning"
   ],
   "date": "2026-01-17T10:51",
-  "summary": "GPU 计算是不稳定的",
+  "summary": "GPU computation can be unstable",
   "cover": "/blogs/gpu-twinkle/51610043dc9b0629.webp",
   "hidden": false,
   "category": ""

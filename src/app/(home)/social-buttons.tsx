@@ -185,8 +185,8 @@ export default function SocialButtons() {
 		if (button.type === 'email' || button.type === 'wechat' || button.type === 'qq') {
 			const messageMap: Record<'email' | 'wechat' | 'qq', string> = {
 				email: 'Email address copied',
-				wechat: '微信号已复制到剪贴板',
-				qq: 'QQ号已复制到剪贴板'
+				wechat: 'WeChat ID copied to clipboard',
+				qq: 'QQ ID copied to clipboard'
 			}
 
 			const isImagePath = button.value.startsWith('/images/social-buttons/')

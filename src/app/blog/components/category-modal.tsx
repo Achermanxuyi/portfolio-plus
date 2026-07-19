@@ -69,9 +69,9 @@ export function CategoryModal({
 	return (
 		<DialogModal open={open} onClose={onClose} className='card w-[720px] max-w-[90vw] rounded-2xl p-6'>
 			<div className='mb-4 flex items-center justify-between'>
-				<div className='text-lg font-semibold'>文章分类</div>
+				<div className='text-lg font-semibold'>Categories</div>
 				<button onClick={onClose} className='text-secondary hover:text-brand text-sm'>
-					关闭
+					Close
 				</button>
 			</div>
 			<div className='space-y-4'>
@@ -79,16 +79,16 @@ export function CategoryModal({
 					<input
 						value={newCategory}
 						onChange={e => onNewCategoryChange(e.target.value)}
-						placeholder='输入分类名称'
+						placeholder='Enter category name'
 						className='focus:border-brand w-full rounded-lg border px-3 py-2 text-sm outline-none'
 					/>
 					<button onClick={onAddCategory} className='brand-btn px-4 py-2 text-sm whitespace-nowrap'>
-						新增分类
+						Add category
 					</button>
 				</div>
 				<div className='flex flex-wrap gap-2 rounded-lg bg-white/60 p-3 text-sm'>
 					{categoryList.length === 0 ? (
-						<span className='text-secondary'>暂无分类</span>
+						<span className='text-secondary'>No categories</span>
 					) : (
 						categoryList.map((cat, index) => (
 							<span
@@ -124,7 +124,7 @@ export function CategoryModal({
 								value={item.category || ''}
 								onChange={e => onAssignCategory(item.slug, e.target.value)}
 								className='focus:border-brand rounded-lg border px-3 py-2 text-sm outline-none'>
-								<option value=''>未分类</option>
+								<option value=''>Uncategorized</option>
 								{categoryList.map(cat => (
 									<option key={cat} value={cat}>
 										{cat}
@@ -133,7 +133,7 @@ export function CategoryModal({
 							</select>
 						</div>
 					))}
-					{editableItems.length === 0 && <div className='text-secondary text-sm'>暂无文章</div>}
+					{editableItems.length === 0 && <div className='text-secondary text-sm'>No articles</div>}
 				</div>
 			</div>
 		</DialogModal>

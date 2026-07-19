@@ -156,7 +156,7 @@ export async function pushSiteContent(
 			const path = `public${normalizedUrlPath}`
 			if (!path) continue
 
-			toast.info(`正在上传社交按钮图片 ${buttonId}...`)
+			toast.info(`Uploading social button image ${buttonId}...`)
 			const contentBase64 = await fileToBase64NoPrefix(item.file)
 			const blobData = await createBlob(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, contentBase64, 'base64')
 			treeItems.push({

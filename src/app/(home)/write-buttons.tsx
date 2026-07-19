@@ -63,7 +63,7 @@ export default function WriteButton() {
 					whileTap={{ scale: 0.95 }}
 					onClick={() => setConfigDialogOpen(true)}
 					className='p-2'>
-					<DotsSVG className='text-brand h-6 w-6' />
+					<DotsSVG className='text-brand h-8 w-8' />
 				</motion.button>
 			</motion.div>
 		</HomeDraggableLayer>

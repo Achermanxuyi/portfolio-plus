@@ -214,16 +214,6 @@
 		"stars": 3
 	},
 	{
-		"name": "WebP Convert & Compress",
-		"logo": "https://www.yysuni.com/images/avatar.png",
-		"url": "https://www.yysuni.com/image-toolbox",
-		"description": "Unlimited, fast compression with direct visual comparison.",
-		"tags": [
-			"Images"
-		],
-		"stars": 3
-	},
-	{
 		"name": "WoraWork",
 		"logo": "https://worawork.vercel.app/Icons/worawork.webp",
 		"url": "https://worawork.vercel.app/",

@@ -5,12 +5,13 @@ export const CARD_SPACING_SM = 24
 export const BLOG_SLUG_KEY = process.env.BLOG_SLUG_KEY || ''
 
 /**
- * GitHub Repository Configuration (Server-side only)
+ * GitHub Repository Configuration
+ * Used in browser code, so env vars must be prefixed with NEXT_PUBLIC_ to take effect.
  */
 export const GITHUB_CONFIG = {
-	OWNER: process.env.GITHUB_OWNER || 'Achermanxuyi',
-	REPO: process.env.GITHUB_REPO || 'Elana-blog',
-	BRANCH: process.env.GITHUB_BRANCH || 'main',
-	APP_ID: process.env.GITHUB_APP_ID || '2568144',
-	ENCRYPT_KEY: process.env.GITHUB_ENCRYPT_KEY || 'wudishiduomejimo',
+	OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || 'Achermanxuyi',
+	REPO: process.env.NEXT_PUBLIC_GITHUB_REPO || 'portfolio-plus',
+	BRANCH: process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main',
+	APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID || '2568144',
+	ENCRYPT_KEY: process.env.NEXT_PUBLIC_GITHUB_ENCRYPT_KEY || 'wudishiduomejimo',
 } as const

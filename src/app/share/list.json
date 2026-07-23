@@ -94,16 +94,6 @@
 		"stars": 4
 	},
 	{
-		"name": "Ai lman",
-		"url": "https://aliimam.in/docs/backgrounds/shader-rgb",
-		"logo": "https://aliimam.in/_next/image?url=%2Fai-logo-black.png&w=128&q=75",
-		"description": "Similar to Magic UI, though less polished — nice for browsing after Magic UI.",
-		"tags": [
-			"Components"
-		],
-		"stars": 3
-	},
-	{
 		"name": "Awwwards",
 		"url": "https://www.awwwards.com/",
 		"logo": "https://assets.awwwards.com/assets/images/favicon.svg",

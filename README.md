@@ -1,164 +1,135 @@
-# 2025 Blog
+# 2025 Portfolio & Blog
 
-> 最新引导说明：https://www.yysuni.com/blog/readme
+> Based on [YYsuni/2025-blog-public](https://github.com/YYsuni/2025-blog-public) (MIT License)
 
-该项目使用 Github App 管理项目内容，请保管好后续创建的 **Private key**，不要上传到公开网上。
+> Latest guide: https://www.yysuni.com/blog/readme
 
-## 1. 安装
+This project uses a Github App to manage content. Keep the generated **Private Key** safe and private.
 
-使用该项目可以先不做本地开发，直接部署然后配置环境变量。具体变量名请看下列大写变量
+## 1. Install
+
+You do not need to run local development right away. You can deploy first and set environment variables later. The config keys are shown below:
 
 ```ts
 export const GITHUB_CONFIG = {
-	OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || 'yysuni',
-	REPO: process.env.NEXT_PUBLIC_GITHUB_REPO || '2025-blog-public',
-	BRANCH: process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main',
-	APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID || '-'
+  OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || 'elanaliao',
+  REPO: process.env.NEXT_PUBLIC_GITHUB_REPO || '2025-blog-public',
+  BRANCH: process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main',
+  APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID || '-'
 } as const
 ```
 
-也可以自己手动先调整安装，可自行 `pnpm i`
+If you want, install dependencies locally with `pnpm i`.
 
-## 2. 部署
+## 2. Deploy
 
-我这里熟悉 Vercel 部署，就以 Vercel 部署为例子。创建 Project => Import 这个项目
+I use Vercel, so this guide is based on Vercel deployment. Create a new project and import this repository.
 
-![](https://www.yysuni.com/blogs/readme/730266f17fab9717.png)
+![](docs/readme/vercel_create.png)
 
-无需配置，直接点部署
+No extra config is needed. Just click deploy.
 
-![](https://www.yysuni.com/blogs/readme/95dee9a69154d0d0.png)
+![](docs/readme/vercel_deploy.png)
 
-大约 60 秒会部署完成，有一个直接 vercel 域名，如：https://2025-blog-public.vercel.app/
+The deployment usually finishes in about 60 seconds. You will get a Vercel domain like `https://2025-blog-public.vercel.app/`.
 
-到这里部署网站已经完成了，下一步创建 Github App
+At this point, the website is deployed. Next step: create a Github App.
 
-## 3. 创建 Github App 链接仓库
+## 3. Create a Github App and connect the repo
 
-在 github 个人设置里面，找到最下面的 Developer Settings ，点击进入
+In your Github account settings, go to the bottom and open Developer Settings.
 
-![](https://www.yysuni.com/blogs/readme/0abb3b592cbedad6.png)
+![](docs/readme/github_settings.png)
 
-进入开发者页面，点击 **New Github App**
+Then click **New Github App**.
 
-*GitHub App name* 和 *Homepage URL* , 输入什么都不影响。Webhook 也关闭，不需要。
-
-![](https://www.yysuni.com/blogs/readme/71dcd9cf8ec967c0.png)
-
-只需要注意设置一个仓库 write 权限，其它不用。
-
-![](https://www.yysuni.com/blogs/readme/2be290016e56cd34.png)
-
-点击创建，谁能安装这个仓库这个选择无所谓。直接创建。
-
-![](https://www.yysuni.com/blogs/readme/aa002e6805ab2d65.png)
+The *GitHub App name* and *Homepage URL* can be anything. Webhook is not needed.
 
 
-### 创建密钥
+Go to `Permissions & events`. Give the app repository write access only. No other permissions are required.
 
-创建好 Github App 后会提示必须创建一个 **Private Key**，直接创建，会自动下载（不见了也不要紧，后面自己再创建再下载就行）。页面上有个 **App ID** 需要复制一下
+![](docs/readme/github_permission.png)
 
-再切换到安装页面
+Click create. Who can install the app does not matter here.
 
-![](https://www.yysuni.com/blogs/readme/c122b1585bb7a46a.png)
+![](docs/readme/github_create.png)
 
-这里一定要只**授权当前项目**。
 
-![](https://www.yysuni.com/blogs/readme/2cf1cee3b04326f1.png)
+### Create the private key
 
-点击安装，就完成了 Github App 管理该仓库的权限设置了。下一步就是让前端知道推送那个项目，就是最开始提到的环境变量。（如果你不会设置环境变量，直接改仓库文件 `src/consts.ts` 也行。因为是公开的，所以环境变量意义也不大）
+After creating the Github App, Github will prompt you to create a **Private Key**. Create it and download the file. If you lose it, you can always create another key later.
 
-直接输入这几个环境变量值就行，一般只用设置 OWNER 和 APP_ID。其它配置不用管，直接输入创建就行。
+Copy the **App ID** from the app page.
 
-![](https://www.yysuni.com/blogs/readme/c5a049d737848abf.png)
+Then go to the install page.
 
-设置完成后，需要手动再部署一次，让环境变量生效。
-* 可以直接 push 一次仓库代码会触发部署
-* 也可以手动选择创建一次部署
-![](https://www.yysuni.com/blogs/readme/59a802ed8d1c3a13.png)
+![](docs/readme/github_installation.png)
 
-## 4. 完成
+Make sure you only authorize the current repository.
 
-现在，部署的这个网站就可以开始使用前端改内容了。比如更改一个分享内容。
+![](docs/readme/github_authorization.png)
 
-**提示**，网站前端页面删改完提示成功之后，你需要等待后台的部署完成，再刷新页面才能完成服务器内容的更新哦。
+Install the app. Now the Github App has permission to manage the repository.
 
-## 5. 删除
+The frontend needs to know which repo to push to. That is the environment variables mentioned earlier. If you do not want to use env vars, you can also edit `src/consts.ts` directly. Since this is a public repo, env vars are mostly just a convenience.
 
-使用这个项目应该第一件事需要删除我的 blog，单独删除，批量删除已完成。
+Set these values, usually `OWNER` and `APP_ID` are enough. The rest can stay default.
 
-## 6. 配置
+![](docs/readme/vercel_var.png)
 
-大部分页面右上角都会有一个编辑按钮，意味着你可以使用 **private key** 进行配置部署。
+After you finish, redeploy once so the environment variables take effect.
 
-### 6.1 网站配置
+- Push code to the repo to trigger deployment.
+- Or manually trigger a deployment in Vercel.
 
-首页有一个不显眼的配置按钮，点击就能看到现在可以配置的内容。
+![](docs/readme/vercel_final.png)
 
-![](https://www.yysuni.com/blogs/readme/cddb4710e08a5069.png)
+## 4. Done
 
-## 7. 写 blog
+Now the deployed site can be used to edit content from the frontend. For example, you can update a share entry.
 
-写 blog 的图片管理，可能会有疑惑。图片管理推荐逻辑是先点击 **+ 号** 添加图片，（推荐先压缩好，尺寸推荐宽度不超过 1200）。然后将上传好的图片直接拖入文案编辑区，这就已经添加好了，点击右上角预览就可以看到效果。
+**Note:** after the frontend shows success, wait for the backend deployment to finish and then refresh the page for the update to appear.
 
-## 8. 写给非前端
+## 5. Remove
 
-非前端配置内容，还是需要一个文件指引。下面写一些更细致的代码配置。
+If you use this project, the first thing should be removing my example blog content. Single-item and bulk delete are already supported.
 
-### 8.1 移除 Liquid Grass
+## 6. Configuration
 
-进入 `src/layout/index.tsx` 文件，删除两行代码，然后提交代码到你的 github
+Most pages have an edit button in the top right corner. That means you can use the **private key** to configure and deploy content.
+
+### 6.1 Site config
+
+The homepage has a small config button. Click it to see the current editable settings.
+
+![](docs/readme/home_page.png)
+
+## 7. Writing blog posts
+
+Image management for blog posts can be confusing. The recommended flow is:
+
+1. Click the **+** button to add images.
+2. Compress them first. Recommended width is no more than 1200px.
+3. Drag uploaded images into the editor area.
+4. Click preview in the top right to see the result.
+
+## 8. For non-developers
+
+Non-developers still need a config guide. Below are more detailed code notes.
+
+### 8.1 Remove Liquid Grass
+
+Open `src/layout/index.tsx`, delete two lines, then commit the code to Github:
+
 ```tsx
 const LiquidGrass = dynamic(() => import('@/components/liquid-grass'), { ssr: false })
-// 中间省略...
-<LiquidGrass /> // 第 53 行
+// ...other code...
+<LiquidGrass /> // around line 53
 ```
 
-![](https://www.yysuni.com/blogs/readme/f70ff3fe3a77f193.png)
+### 8.2 Configure homepage content
 
-### 8.2 配置首页内容
-
-首页的内容现在只能前端配置一部分，所以代码更改在 `src/app/(home)` 目录，这个目录代表首页所有文件。首页的具体文件为  `src/app/(home)/page.tsx`
-
- ![](https://www.yysuni.com/blogs/readme/011679cd9bf73602.png)
-
-这里可以看到有很多 `Card` 文件，需要改那个首页 Card 内容就可以点入那个具体文件修改。
-
-比如中间的内容，为 `HiCard`，点击 `hi-card.tsx` 文件，即可更改其内容。
-
-![](https://www.yysuni.com/blogs/readme/20b0791d012163ee.png)
-
-## 9. 互助群
-
-对于完全不是**程序员**的用户，确实会对于更新代码后，如何同步，如何**合并代码**手足无措。我创建了一个 **QQ群**（加群会简单点），或者 vx 群还是 tg 群会好一点可以 issue 里面说下就行。
-
-QQ 群：[https://qm.qq.com/q/spdpenr4k2](https://qm.qq.com/q/spdpenr4k2)
-> 不好意思，之前的那个qq群ID（1021438316），不知道为啥搜不到😂
-
-微信群：刚建好了一个微信群，没有 qq 的可以用这个微信群
-![](https://www.yysuni.com/blogs/readme/343f2c62035b8e23.webp)
-
-tg 群：1月1号，才创建的 tg 群 https://t.me/public_blog_2025
+Homepage content is partly editable through the frontend, but some layout changes require code edits in `src/app/(home)`. This folder contains homepage files. The main page file is `src/app/(home)/page.tsx`.
+You will see many `Card` components. Edit the file for the card you want to change. For example, the middle content is `HiCard`. Open `hi-card.tsx` to update it.
 
 
-应该主要是我自己亲自帮助你们遇到问题怎么办。（后续看看有没有好心人）
-
-希望多多的非程序员加入 blogger 行列，web blog 还是很好玩的，属于自己的 blog 世界。
-
-游戏资产不一定属于你的，你只有**使用权**，但这个 blog **网站、内容、仓库一定是属于你的**
-
-#### 特殊的导航 Card
-
-因为这个 Card 是全局都在的，所以放在了 `src/components` 目录
-
-![](https://www.yysuni.com/blogs/readme/9780c38f886322fd.png)
-
-## Star History
-
-<a href="https://www.star-history.com/#YYsuni/2025-blog-public&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=YYsuni/2025-blog-public&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=YYsuni/2025-blog-public&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=YYsuni/2025-blog-public&type=date&legend=top-left" />
- </picture>
-</a>

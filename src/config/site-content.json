@@ -5,14 +5,14 @@
 		"username": "Elana"
 	},
 	"theme": {
-		"colorBrand": "#7DB9DE",
-		"colorPrimary": "#2F3A44",
-		"colorSecondary": "#6B7280",
-		"colorBrandSecondary": "#F4A7B9",
-		"colorBg": "#F8FAFC",
-		"colorBorder": "#E5E7EB",
-		"colorCard": "#FFFFFFCC",
-		"colorArticle": "#FFFFFFF2"
+		"colorBrand": "#5bb8f5",
+		"colorPrimary": "#2e3a59",
+		"colorSecondary": "#6b7a90",
+		"colorBrandSecondary": "#f5a8d7",
+		"colorBg": "#f8fbff",
+		"colorBorder": "#dce8f3",
+		"colorCard": "#fffffff2",
+		"colorArticle": "#fdfbfd"
 	},
 	"backgroundColors": [
 		"#E8F2FB",

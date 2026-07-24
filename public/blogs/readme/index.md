@@ -2,7 +2,7 @@
 
 > Based on [YYsuni/2025-blog-public](https://github.com/YYsuni/2025-blog-public) (MIT License)
 
-> Latest guide: https://www.yysuni.com/blog/readme
+> Latest guide: https://elana-blog.vercel.app/blog/readme
 
 This project uses a Github App to manage content. Keep the generated **Private Key** safe and private.
 

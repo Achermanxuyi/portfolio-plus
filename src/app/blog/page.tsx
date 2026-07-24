@@ -8,7 +8,7 @@ import { motion } from 'motion/react'
 dayjs.extend(weekOfYear)
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { ANIMATION_DELAY, INIT_DELAY } from '@/consts'
+import { INIT_DELAY } from '@/consts'
 import ShortLineSVG from '@/svgs/short-line.svg'
 import { useBlogIndex, type BlogIndexItem } from '@/hooks/use-blog-index'
 import { useCategories } from '@/hooks/use-categories'
@@ -194,6 +194,17 @@ export default function BlogPage() {
 		setSelectedSlugs(new Set())
 	}, [selectedCount, selectedSlugs])
 
+	const handleAssignCategory = useCallback((slug: string, category?: string) => {
+		setEditableItems(prev =>
+			prev.map(item => {
+				if (item.slug !== slug) return item
+				const nextCategory = category?.trim()
+				if (!nextCategory) return { ...item, category: undefined }
+				return { ...item, category: nextCategory }
+			})
+		)
+	}, [])
+
 	const handleAddCategory = useCallback(() => {
 		const value = newCategory.trim()
 		if (!value) {
@@ -204,17 +215,41 @@ export default function BlogPage() {
 		setNewCategory('')
 	}, [newCategory])
 
+	const handleRemoveCategory = useCallback((category: string) => {
+		setCategoryList(prev => prev.filter(item => item !== category))
+		setEditableItems(prev => prev.map(item => (item.category === category ? { ...item, category: undefined } : item)))
+	}, [])
+
+	const handleReorderCategories = useCallback((nextList: string[]) => {
+		setCategoryList(nextList)
+	}, [])
+
+	const handleCancel = useCallback(() => {
+		setEditableItems(items)
+		setSelectedSlugs(new Set())
+		setEditMode(false)
+	}, [items])
+
 	const handleSave = useCallback(async () => {
 		const removedSlugs = items.filter(item => !editableItems.some(editItem => editItem.slug === item.slug)).map(item => item.slug)
+		const normalizedCategoryList = categoryList.map(c => c.trim()).filter(Boolean)
+		const categoryListChanged = JSON.stringify(normalizedCategoryList) !== JSON.stringify((categoriesFromServer || []).map(c => c.trim()).filter(Boolean))
+		const categoryAssignmentChanged = items.some(origin => {
+			const next = editableItems.find(editItem => editItem.slug === origin.slug)
+			const originCategory = origin.category || ''
+			const nextCategory = next?.category || ''
+			return originCategory !== nextCategory
+		})
+		const hasChanges = removedSlugs.length > 0 || categoryListChanged || categoryAssignmentChanged
 
-		if (removedSlugs.length === 0) {
+		if (!hasChanges) {
 			toast.info('No changes to save')
 			return
 		}
 
 		try {
 			setSaving(true)
-			await saveBlogEdits(items, editableItems, categoryList)
+			await saveBlogEdits(items, editableItems, normalizedCategoryList)
 			setEditMode(false)
 			setSelectedSlugs(new Set())
 			setCategoryModalOpen(false)
@@ -224,7 +259,7 @@ export default function BlogPage() {
 		} finally {
 			setSaving(false)
 		}
-	}, [items, editableItems, categoryList])
+	}, [items, editableItems, categoryList, categoriesFromServer])
 
 	const handleSaveClick = useCallback(() => {
 		if (!isAuth) {
@@ -248,22 +283,245 @@ export default function BlogPage() {
 		[setPrivateKey]
 	)
 
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (!editMode && (e.ctrlKey || e.metaKey) && e.key === ',') {
+				e.preventDefault()
+				toggleEditMode()
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyDown)
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown)
+		}
+	}, [editMode, toggleEditMode])
+
 	return (
 		<>
+			<input
+				ref={keyInputRef}
+				type='file'
+				accept='.pem'
+				className='hidden'
+				onChange={async e => {
+					const f = e.target.files?.[0]
+					if (f) await handlePrivateKeySelection(f)
+					if (e.currentTarget) e.currentTarget.value = ''
+				}}
+			/>
+
+			<div className='flex flex-col items-center justify-center gap-6 px-6 pt-24 max-sm:pt-24'>
+				{items.length > 0 && (
+					<motion.div
+						initial={{ opacity: 0, scale: 0.6 }}
+						animate={{ opacity: 1, scale: 1 }}
+						className='card btn-rounded relative mx-auto flex items-center gap-1 p-1 max-sm:hidden'>
+						{[
+							{ value: 'day', label: 'Day' },
+							{ value: 'week', label: 'Week' },
+							{ value: 'month', label: 'Month' },
+							{ value: 'year', label: 'Year' },
+							...(enableCategories ? ([{ value: 'category', label: 'Category' }] as const) : [])
+						].map(option => (
+							<motion.button
+								key={option.value}
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								onClick={() => setDisplayMode(option.value as DisplayMode)}
+								className={cn(
+									'btn-rounded px-3 py-1.5 text-xs font-medium transition-all',
+									displayMode === option.value ? 'bg-brand text-white shadow-sm' : 'text-secondary hover:text-brand hover:bg-white/60'
+								)}>
+								{option.label}
+							</motion.button>
+						))}
+					</motion.div>
+				)}
+
+				{groupKeys.map((groupKey, index) => {
+					const group = groupedItems[groupKey]
+					if (!group) return null
+
+					return (
+						<motion.div
+							key={groupKey}
+							initial={{ opacity: 0, scale: 0.95 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{ delay: INIT_DELAY / 2 }}
+							className='card relative w-full max-w-210 space-y-6'>
+							<div className='mb-3 flex items-center justify-between gap-3 text-base'>
+								<div className='flex items-center gap-3'>
+									<div className='font-medium'>{getGroupLabel(groupKey)}</div>
+									<div className='h-2 w-2 rounded-full bg-[#D9D9D9]'></div>
+									<div className='text-secondary text-sm'>
+										{group.items.length} {group.items.length === 1 ? 'post' : 'posts'}
+									</div>
+								</div>
+								{editMode &&
+									(() => {
+										const groupAllSelected = group.items.every(item => selectedSlugs.has(item.slug))
+										return (
+											<motion.button
+												whileHover={{ scale: 1.05 }}
+												whileTap={{ scale: 0.95 }}
+												onClick={() => handleSelectGroup(groupKey)}
+												className={cn(
+													'rounded-lg border px-3 py-1 text-xs transition-colors',
+													groupAllSelected
+														? 'border-brand/40 bg-brand/10 text-brand hover:bg-brand/20'
+														: 'text-secondary hover:border-brand/40 hover:text-brand border-transparent bg-white/60 hover:bg-white/80'
+												)}>
+												{groupAllSelected ? 'Deselect group' : 'Select group'}
+											</motion.button>
+										)
+									})()}
+							</div>
+							<div>
+								{group.items.map(it => {
+									const hasRead = isRead(it.slug)
+									const isSelected = selectedSlugs.has(it.slug)
+									return (
+										<Link
+											href={`/blog/${it.slug}`}
+											key={it.slug}
+											onClick={event => handleItemClick(event, it.slug)}
+											className={cn(
+												'group flex min-h-10 items-center gap-3 py-3 transition-all',
+												editMode
+													? cn(
+															'rounded-lg border px-3',
+															isSelected ? 'border-brand/60 bg-brand/5' : 'hover:border-brand/40 border-transparent hover:bg-white/60'
+														)
+													: 'cursor-pointer'
+											)}>
+											{editMode && (
+												<span
+													className={cn(
+														'flex h-4 w-4 items-center justify-center rounded-full border text-[10px] font-semibold',
+														isSelected ? 'border-brand bg-brand text-white' : 'border-[#D9D9D9] text-transparent'
+													)}>
+													<Check />
+												</span>
+											)}
+											<span className='text-secondary w-[44px] shrink-0 text-sm font-medium'>{dayjs(it.date).format('MM-DD')}</span>
+
+											<div className='relative flex h-2 w-2 items-center justify-center'>
+												<div className='bg-secondary group-hover:bg-brand h-[5px] w-[5px] rounded-full transition-all group-hover:h-4'></div>
+												<ShortLineSVG className='absolute bottom-4' />
+											</div>
+											<div
+												className={cn(
+													'flex-1 truncate text-sm font-medium transition-all',
+													editMode ? null : 'group-hover:text-brand group-hover:translate-x-2'
+												)}>
+												{it.title || it.slug}
+												{hasRead && <span className='text-secondary ml-2 text-xs'>[Read]</span>}
+											</div>
+											<div className='flex flex-wrap items-center gap-2 max-sm:hidden'>
+												{(it.tags || []).map(t => (
+													<span key={t} className='text-secondary text-sm'>
+														#{t}
+													</span>
+												))}
+											</div>
+										</Link>
+									)
+								})}
+							</div>
+						</motion.div>
+					)
+				})}
+				{items.length > 0 && (
+					<div className='text-center'>
+						<motion.a
+							initial={{ opacity: 0, scale: 0.6 }}
+							animate={{ opacity: 1, scale: 1 }}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							href='https://juejin.cn/user/2427311675422382/posts'
+							target='_blank'
+							className='card text-secondary static inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs'>
+							<JuejinSVG className='h-4 w-4' />
+							More
+						</motion.a>
+					</div>
+				)}
+			</div>
+
 			<div className='pt-12'>
 				{!loading && items.length === 0 && <div className='text-secondary py-6 text-center text-sm'>No posts yet</div>}
 				{loading && <div className='text-secondary py-6 text-center text-sm'>Loading...</div>}
 			</div>
 
-			<motion.div className='absolute top-4 right-6 flex items-center gap-3 max-sm:hidden'>
+			<motion.div
+				initial={{ opacity: 0, scale: 0.6 }}
+				animate={{ opacity: 1, scale: 1 }}
+				className='absolute top-4 right-6 flex items-center gap-3 max-sm:hidden'>
 				{editMode ? (
-					<motion.button className='brand-btn px-6'>
-						{saving ? 'Saving…' : buttonText}
-					</motion.button>
+					<>
+						{enableCategories && (
+							<motion.button
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								onClick={() => setCategoryModalOpen(true)}
+								disabled={saving}
+								className='rounded-xl border bg-white/60 px-4 py-2 text-sm transition-colors hover:bg-white/80'>
+								Categories
+							</motion.button>
+						)}
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={handleCancel}
+							disabled={saving}
+							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
+							Cancel
+						</motion.button>
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={selectedCount === editableItems.length ? handleDeselectAll : handleSelectAll}
+							className='rounded-xl border bg-white/60 px-4 py-2 text-sm transition-colors hover:bg-white/80'>
+							{selectedCount === editableItems.length ? 'Deselect all' : 'Select all'}
+						</motion.button>
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={handleDeleteSelected}
+							disabled={selectedCount === 0}
+							className='rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600 transition-colors disabled:opacity-60'>
+							Delete ({selectedCount})
+						</motion.button>
+						<motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSaveClick} disabled={saving} className='brand-btn px-6'>
+							{saving ? 'Saving…' : buttonText}
+						</motion.button>
+					</>
 				) : (
-					!hideEditButton && <motion.button className='rounded-xl border px-6 py-2 text-sm'>Edit</motion.button>
+					!hideEditButton && (
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={toggleEditMode}
+							className='bg-card rounded-xl border px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
+							Edit
+						</motion.button>
+					)
 				)}
 			</motion.div>
+
+			<CategoryModal
+				open={categoryModalOpen}
+				onClose={() => setCategoryModalOpen(false)}
+				categoryList={categoryList}
+				newCategory={newCategory}
+				onNewCategoryChange={setNewCategory}
+				onAddCategory={handleAddCategory}
+				onRemoveCategory={handleRemoveCategory}
+				onReorderCategories={handleReorderCategories}
+				editableItems={editableItems}
+				onAssignCategory={handleAssignCategory}
+			/>
 		</>
 	)
 }

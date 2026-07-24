@@ -406,7 +406,7 @@ export default function BlogPage() {
 											)}
 											<span className='text-secondary w-[44px] shrink-0 text-sm font-medium'>{dayjs(it.date).format('MM-DD')}</span>
 
-											<div className='relative flex h-2 w-2 items-center justify-center'>
+											<div className='text-secondary group-hover:text-brand relative flex h-2 w-2 items-center justify-center transition-colors'>
 												<div className='bg-secondary group-hover:bg-brand h-[5px] w-[5px] rounded-full transition-all group-hover:h-4'></div>
 												<ShortLineSVG className='absolute bottom-4' />
 											</div>

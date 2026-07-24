@@ -25,11 +25,11 @@ If you want, install dependencies locally with `pnpm i`.
 
 I use Vercel, so this guide is based on Vercel deployment. Create a new project and import this repository.
 
-![](docs/readme/vercel_create.png)
+![](https://elana-blog.vercel.app/blogs/readme/vercel_create.png)
 
 No extra config is needed. Just click deploy.
 
-![](docs/readme/vercel_deploy.png)
+![](https://elana-blog.vercel.app/blogs/)readme/vercel_deploy.png)
 
 The deployment usually finishes in about 60 seconds. You will get a Vercel domain like `https://2025-blog-public.vercel.app/`.
 
@@ -39,7 +39,7 @@ At this point, the website is deployed. Next step: create a Github App.
 
 In your Github account settings, go to the bottom and open Developer Settings.
 
-![](docs/readme/github_settings.png)
+![](https://elana-blog.vercel.app/blogs/)readme/github_settings.png)
 
 Then click **New Github App**.
 
@@ -48,11 +48,11 @@ The *GitHub App name* and *Homepage URL* can be anything. Webhook is not needed.
 
 Go to `Permissions & events`. Give the app repository write access only. No other permissions are required.
 
-![](docs/readme/github_permission.png)
+![](https://elana-blog.vercel.app/blogs/)readme/github_permission.png)
 
 Click create. Who can install the app does not matter here.
 
-![](docs/readme/github_create.png)
+![](https://elana-blog.vercel.app/blogs/)readme/github_create.png)
 
 
 ### Create the private key
@@ -63,11 +63,11 @@ Copy the **App ID** from the app page.
 
 Then go to the install page.
 
-![](docs/readme/github_installation.png)
+![](https://elana-blog.vercel.app/blogs/readme/github_installation.png)
 
 Make sure you only authorize the current repository.
 
-![](docs/readme/github_authorization.png)
+![](https://elana-blog.vercel.app/blogs/readme/github_authorization.png)
 
 Install the app. Now the Github App has permission to manage the repository.
 
@@ -75,14 +75,14 @@ The frontend needs to know which repo to push to. That is the environment variab
 
 Set these values, usually `OWNER` and `APP_ID` are enough. The rest can stay default.
 
-![](docs/readme/vercel_var.png)
+![](https://elana-blog.vercel.app/blogs/readme/vercel_var.png)
 
 After you finish, redeploy once so the environment variables take effect.
 
 - Push code to the repo to trigger deployment.
 - Or manually trigger a deployment in Vercel.
 
-![](docs/readme/vercel_final.png)
+![](https://elana-blog.vercel.app/blogs/readme/vercel_final.png)
 
 ## 4. Done
 
@@ -102,7 +102,7 @@ Most pages have an edit button in the top right corner. That means you can use t
 
 The homepage has a small config button. Click it to see the current editable settings.
 
-![](docs/readme/home_page.png)
+![]([docs/](https://elana-blog.vercel.app/blogs/)readme/home_page.png)
 
 ## 7. Writing blog posts
 

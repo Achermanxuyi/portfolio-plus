@@ -102,7 +102,7 @@ Most pages have an edit button in the top right corner. That means you can use t
 
 The homepage has a small config button. Click it to see the current editable settings.
 
-![]([docs/](https://elana-blog.vercel.app/blogs/)readme/home_page.png)
+![](https://elana-blog.vercel.app/blogs/readme/home_page.png)
 
 ## 7. Writing blog posts
 

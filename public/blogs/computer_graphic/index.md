@@ -24,27 +24,27 @@ Procedural graphics coursework in Unity, progressing from **2D raster drawing** 
 
 ### 2D Drawing
 
-<!-- ![2D Tutorial 2](https://elana-blog.vercel.app/blogs/2d-tutorial1.png) -->
-![2D Tutorial 1](https://elana-blog.vercel.app/blogs/2d-tutorial1.png) 
-<!-- ![2D Tutorial 2](https://elana-blog.vercel.app/blogs/2d-tutorial2.png) -->
-![2D Tutorial 2](https://elana-blog.vercel.app/blogs/2d-tutorial2.png)
-<!-- ![2D Tutorial 3](https://elana-blog.vercel.app/blogs/2d-tutorial3.png) -->
-![2D Tutorial 3](https://elana-blog.vercel.app/blogs/2d-tutorial3.png)
+<!-- ![2D Tutorial 2](https://elana-blog.vercel.app/blogs/computer_graphic/2d-tutorial1.png) -->
+![2D Tutorial 1](https://elana-blog.vercel.app/blogs/computer_graphic/2d-tutorial1.png) 
+<!-- ![2D Tutorial 2](https://elana-blog.vercel.app/blogs/computer_graphic/2d-tutorial2.png) -->
+![2D Tutorial 2](https://elana-blog.vercel.app/blogs/computer_graphic/2d-tutorial2.png)
+<!-- ![2D Tutorial 3](https://elana-blog.vercel.app/blogs/computer_graphic/2d-tutorial3.png) -->
+![2D Tutorial 3](https://elana-blog.vercel.app/blogs/computer_graphic/2d-tutorial3.png)
 
 ### 3D Graphics
-<!-- ![Bowler hat / keys](https://elana-blog.vercel.app/blogs/3d-objects.png) -->
-![Bowler hat / keys](https://elana-blog.vercel.app/blogs/3d-objects.png)
+<!-- ![Bowler hat / keys](https://elana-blog.vercel.app/blogs/computer_graphic/3d-objects.png) -->
+![Bowler hat / keys](https://elana-blog.vercel.app/blogs/computer_graphic/3d-objects.png)
 
 ### Assignment 3 — Movie
 
-<!-- ![Movie wide shot](https://elana-blog.vercel.app/blogs/a3-movie-01.png) -->
-![Movie wide shot](https://elana-blog.vercel.app/blogs/a3-movie-01.png)
-<!-- ![Small spider on path](https://elana-blog.vercel.app/blogs/a3-movie-02.png) -->
-![Small spider on path](https://elana-blog.vercel.app/blogs/a3-movie-02.png)
-<!-- ![Web & big spider](https://elana-blog.vercel.app/blogs/a3-movie-03.png) -->
-![Web & big spider](https://elana-blog.vercel.app/blogs/a3-movie-03.png)
-<!-- ![Fly exit / close-up](https://elana-blog.vercel.app/blogs/a3-movie-04.png) -->
-![Fly exit / close-up](https://elana-blog.vercel.app/blogs/a3-movie-04.png)
+<!-- ![Movie wide shot](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-01.png) -->
+![Movie wide shot](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-01.png)
+<!-- ![Small spider on path](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-02.png) -->
+![Small spider on path](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-02.png)
+<!-- ![Web & big spider](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-03.png) -->
+![Web & big spider](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-03.png)
+<!-- ![Fly exit / close-up](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-04.png) -->
+![Fly exit / close-up](https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-04.png)
 
 ---
 
@@ -188,4 +188,4 @@ Shared helpers under `Assets/Utilities/`:
 
 ## License
 
-MIT — see [`LICENSE`](./LICENSE).
+MIT — see in the GitHub Repository

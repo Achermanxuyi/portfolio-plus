@@ -8,5 +8,16 @@
     "cover": "/blogs/readme/48440ee9ea3d119b.jpg",
     "hidden": false,
     "category": "Open Source"
+  },
+
+  {
+    "slug": "computer_graphic",
+    "title": "Computer Graphics in C Shape",
+    "tags": [],
+    "date": "2026-10-24T14:10",
+    "summary": "Procedural graphics coursework in Unity, progressing from 2D raster drawing → procedural 3D meshes → a cinematic short with lighting, shading, and animation.",
+    "cover": "/blogs/computer_graphics/a3-movie-02.png",
+    "hidden": false,
+    "category": "Open Source, Game Development"
   }
 ]

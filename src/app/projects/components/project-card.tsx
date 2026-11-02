@@ -12,7 +12,7 @@ export interface Project {
 	year: number
 	description: string
 	image: string
-	url: string
+	url?: string
 	tags: string[]
 	github?: string
 	npm?: string
@@ -158,9 +158,9 @@ export function ProjectCard({ project, isEditMode = false, onUpdate, onDelete }:
 					<>
 						<input
 							type='url'
-							value={localProject.url}
-							onChange={e => handleFieldChange('url', e.target.value)}
-							placeholder='Website URL'
+							value={localProject.url || ''}
+							onChange={e => handleFieldChange('url', e.target.value || undefined)}
+							placeholder='Website URL (optional)'
 							className='bg-secondary/10 border-secondary/20 flex-1 rounded-lg border px-3 py-1.5 text-sm focus:outline-none'
 						/>
 						<input
@@ -180,13 +180,15 @@ export function ProjectCard({ project, isEditMode = false, onUpdate, onDelete }:
 					</>
 				) : (
 					<>
-						<Link
-							href={localProject.url}
-							target='_blank'
-							rel='noopener noreferrer'
-							className='bg-card hover:bg-bg rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors'>
-							Website
-						</Link>
+						{localProject.url && (
+							<Link
+								href={localProject.url}
+								target='_blank'
+								rel='noopener noreferrer'
+								className='bg-card hover:bg-bg rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors'>
+								Website
+							</Link>
+						)}
 						{localProject.github && (
 							<Link
 								href={localProject.github}

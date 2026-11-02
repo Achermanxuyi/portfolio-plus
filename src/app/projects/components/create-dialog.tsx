@@ -61,7 +61,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 	}
 
 	const handleSubmit = () => {
-		if (!formData.name.trim() || !formData.image.trim() || !formData.url.trim() || !formData.description.trim()) {
+		if (!formData.name.trim() || !formData.image.trim() || !formData.description.trim()) {
 			toast.error('Please complete all required fields')
 			return
 		}
@@ -112,9 +112,9 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 							/>
 							<input
 								type='url'
-								value={formData.url}
+								value={formData.url || ''}
 								onChange={e => setFormData({ ...formData, url: e.target.value })}
-								placeholder='https://example.com'
+								placeholder='Website URL (optional)'
 								className='text-secondary flex-1 truncate text-xs focus:outline-none'
 							/>
 						</div>

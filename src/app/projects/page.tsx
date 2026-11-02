@@ -18,7 +18,7 @@ export default function Page() {
 	const [isSaving, setIsSaving] = useState(false)
 	const [editingProject, setEditingProject] = useState<Project | null>(null)
 	const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
-	const [imageItems, setImageItems] = useState<Map<string, ImageItem>>(new Map())
+	const [imageItems, setImageItems] = useState<Map<Project, ImageItem>>(new Map())
 	const keyInputRef = useRef<HTMLInputElement>(null)
 
 	const { isAuth, setPrivateKey } = useAuthStore()
@@ -26,14 +26,15 @@ export default function Page() {
 	const hideEditButton = siteContent.hideEditButton ?? false
 
 	const handleUpdate = (updatedProject: Project, oldProject: Project, imageItem?: ImageItem) => {
-		setProjects(prev => prev.map(p => (p.url === oldProject.url ? updatedProject : p)))
-		if (imageItem) {
-			setImageItems(prev => {
-				const newMap = new Map(prev)
-				newMap.set(updatedProject.url, imageItem)
-				return newMap
-			})
-		}
+		setProjects(prev => prev.map(p => (p === oldProject ? updatedProject : p)))
+		setImageItems(prev => {
+			const newMap = new Map(prev)
+			const existingImageItem = newMap.get(oldProject)
+			newMap.delete(oldProject)
+			const nextImageItem = imageItem || existingImageItem
+			if (nextImageItem) newMap.set(updatedProject, nextImageItem)
+			return newMap
+		})
 	}
 
 	const handleAdd = () => {
@@ -43,7 +44,7 @@ export default function Page() {
 
 	const handleSaveProject = (updatedProject: Project) => {
 		if (editingProject) {
-			const updated = projects.map(p => (p.url === editingProject.url ? updatedProject : p))
+			const updated = projects.map(p => (p === editingProject ? updatedProject : p))
 			setProjects(updated)
 		} else {
 			setProjects([...projects, updatedProject])
@@ -52,7 +53,12 @@ export default function Page() {
 
 	const handleDelete = (project: Project) => {
 		if (confirm(`Delete ${project.name}?`)) {
-			setProjects(projects.filter(p => p.url !== project.url))
+			setProjects(projects.filter(p => p !== project))
+			setImageItems(prev => {
+				const newMap = new Map(prev)
+				newMap.delete(project)
+				return newMap
+			})
 		}
 	}
 
@@ -133,9 +139,15 @@ export default function Page() {
 			/>
 
 			<div className='flex flex-col items-center justify-center px-6 pt-32 pb-12'>
-				<div className='grid w-full max-w-[1200px] grid-cols-2 gap-6 max-md:grid-cols-1'>
+				<div className='grid w-full max-w-300 grid-cols-2 gap-6 max-md:grid-cols-1'>
 					{projects.map((project, index) => (
-						<ProjectCard key={project.url} project={project} isEditMode={isEditMode} onUpdate={handleUpdate} onDelete={() => handleDelete(project)} />
+						<ProjectCard
+							key={project.url || `project-${index}`}
+							project={project}
+							isEditMode={isEditMode}
+							onUpdate={handleUpdate}
+							onDelete={() => handleDelete(project)}
+						/>
 					))}
 				</div>
 			</div>

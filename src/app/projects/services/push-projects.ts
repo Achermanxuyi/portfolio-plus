@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 
 export type PushProjectsParams = {
 	projects: Project[]
-	imageItems?: Map<string, ImageItem>
+	imageItems?: Map<Project, ImageItem>
 }
 
 export async function pushProjects(params: PushProjectsParams): Promise<void> {
@@ -31,7 +31,7 @@ export async function pushProjects(params: PushProjectsParams): Promise<void> {
 
 	if (imageItems && imageItems.size > 0) {
 		toast.info('Uploading images...')
-		for (const [url, imageItem] of imageItems.entries()) {
+		for (const [project, imageItem] of imageItems.entries()) {
 			if (imageItem.type === 'file') {
 				const hash = imageItem.hash || (await hashFileSHA256(imageItem.file))
 				const ext = getFileExt(imageItem.file.name)
@@ -51,7 +51,11 @@ export async function pushProjects(params: PushProjectsParams): Promise<void> {
 					uploadedHashes.add(hash)
 				}
 
-				updatedProjects = updatedProjects.map(p => (p.url === url ? { ...p, image: publicPath } : p))
+				const projectIndex = updatedProjects.indexOf(project)
+				if (projectIndex === -1) {
+					throw new Error(`Could not find project "${project.name}" while preparing its image`)
+				}
+				updatedProjects[projectIndex] = { ...updatedProjects[projectIndex], image: publicPath }
 			}
 		}
 	}
@@ -76,4 +80,3 @@ export async function pushProjects(params: PushProjectsParams): Promise<void> {
 
 	toast.success('Published successfully!')
 }
-

@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "name": "Computer Graphic (Unity and C#)",
+        "year": 2026,
+        "description": "Procedural graphics coursework in Unity, progressing from 2D raster drawing → procedural 3D meshes → a cinematic short with lighting, shading, and animation",
+        "image": "https://elana-blog.vercel.app/blogs/computer_graphic/a3-movie-02.png",
+        "tags": [
+            "GameDev",
+            "Computer Graphic",
+            "Tutorial"
+        ],
+        "github": "https://github.com/Achermanxuyi/C-Computer-Graphic"
+    }
+]

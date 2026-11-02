@@ -19,13 +19,13 @@ export default function AboutMeCard() {
 				<div className='flex flex-col justify-center h-full'>
 					<h2 className='text-lg font-bold mb-3'>About Me</h2>
 					<p className='text-sm text-gray-700 mb-2'>
-						🎓 AI-focused ICT student at UTAS
+						Developer, builder, and creator. 
 					</p>
 					<p className='text-sm text-gray-600 mb-3'>
-						Building intelligent systems across LLMs, computer vision, and data-driven applications.
+						Exploring the intersection of AI, software, and human interaction.
 					</p>
 					<p className='text-sm text-gray-600'>
-						Experienced in both AI engineering and modern web development.
+						I build applications, experiment with emerging technologies, and share ideas through videos and writing.
 					</p>
 				</div>
 			</Card>
